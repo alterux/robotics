@@ -148,25 +148,7 @@
     </style>
 </head>
 <body>
-    <script>
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            });
-    </script>
-    <!-- <header>
-        <nav class="container">
-            <div class="logo">NINGEN ROBOTICS</div>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <!-- <a href="#about">About</a> -->
-                <a href="#vision">Vision</a>
-                <!-- <a href="#approach">Approach</a> -->
-                <a href="contact.html">Contact</a>
-            </div>
-        </nav>
-    </header> -->
+    <div id="header-placeholder"></div>
 
     <section id="hero">
         <div class="content">
@@ -240,5 +222,12 @@
     <footer>
         <p>&copy; 2024 Ningen Robotics. All rights reserved. | Based in Tokyo, Japan</p>
     </footer>
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+    </script>
 </body>
 </html>

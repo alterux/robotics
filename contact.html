@@ -176,23 +176,7 @@
     </style>
 </head>
 <body>
-    <script>
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            });
-    </script>
-    <!-- <header>
-        <nav class="container">
-            <div class="logo">NINGEN ROBOTICS</div>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="vision.html">About</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </nav>
-    </header> -->
+    <div id="header-placeholder"></div>
 
     <section id="hero">
         <div class="content">
@@ -203,16 +187,6 @@
     <section id="contact" class="section">
         <div class="container">
             <h2>Get in Touch</h2>
-            <!-- <div class="contact-grid">
-                <div class="contact-form">
-                    <form>
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                        <input type="text" name="subject" placeholder="Subject">
-                        <textarea name="message" placeholder="Your Message" required></textarea>
-                        <button type="submit">Send Message</button>
-                    </form>
-                </div> -->
                 <div class="contact-info">
                     <h3>Contact Information</h3>
                     <p><strong>Address:</strong> Tokyo Bay Area, Tokyo, Japan</p>
@@ -230,5 +204,12 @@
     <footer>
         <p>&copy; 2024 Ningen Robotics. All rights reserved. | Based in Tokyo, Japan</p>
     </footer>
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+    </script>
 </body>
 </html>
