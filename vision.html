@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Ningen Robotics - Pioneering the Future of Robotics</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+        :root {
+            --primary-color: #00ff9b;
+            --bg-color: #000;
+            --text-color: #fff;
+            --section-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        #hero {
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url('/api/placeholder/1920/1080') no-repeat center center/cover;
+            position: relative;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        #hero .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        #hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+
+        .section p {
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--section-bg);
+            padding: 30px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            background-color: var(--section-bg);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">NINGEN ROBOTICS</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#about">About</a>
+                <a href="#vision">Vision</a>
+                <a href="#approach">Approach</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="content">
+            <h1>About Ningen Robotics</h1>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2>Our Story</h2>
+            <p>Ningen Robotics is a pioneering company in robotics innovation and deployment. Founded in Tokyo, Japan, we are at the forefront of integrating truly versatile robots into everyday life. Our mission is to drive the progress of tomorrow through safe and intelligent machines, leveraging cutting-edge technology to enable AI to interact seamlessly with the physical world.</p>
+        </div>
+    </section>
+
+    <section id="vision" class="section">
+        <div class="container">
+            <h2>Our Vision</h2>
+            <p>At Ningen Robotics, we envision a future where robots and humans coexist harmoniously, enhancing productivity, safety, and quality of life. Our engineering vision focuses on three core principles:</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Simplicity</h3>
+                    <p>We strive for elegant, straightforward designs that are easy to understand and maintain.</p>
+                </div>
+                <div class="card">
+                    <h3>Modularity</h3>
+                    <p>Our robots are built with interchangeable components, allowing for easy upgrades and customization.</p>
+                </div>
+                <div class="card">
+                    <h3>Customizability</h3>
+                    <p>We empower our customers to tailor our robots to their specific needs and applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="approach" class="section">
+        <div class="container">
+            <h2>Our Approach</h2>
+            <p>We follow a strategic 3-phase deployment plan over the next 5 years:</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Phase 1: Academia and R&D</h3>
+                    <p>We deploy our H1-robot (Droid Mk.1) to academic institutions and private R&D facilities, gathering valuable feedback and analytics.</p>
+                </div>
+                <div class="card">
+                    <h3>Phase 2: Industry and Government</h3>
+                    <p>We expand our reach to industrial applications and government projects, refining our robots for real-world use.</p>
+                </div>
+                <div class="card">
+                    <h3>Phase 3: General Consumer Market</h3>
+                    <p>We bring our advanced robotics solutions to the general public, transforming everyday life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="market-position" class="section">
+        <div class="container">
+            <h2>Our Market Position</h2>
+            <p>Ningen Robotics is uniquely positioned for success due to our:</p>
+            <ul>
+                <li>Strong partnerships with leading laboratories, research institutions, and companies in the Tokyo bay area</li>
+                <li>Strategic location in Tokyo's vibrant technology ecosystem</li>
+                <li>Alignment with Japan's government initiatives promoting robotics and AI development</li>
+                <li>Timing that coincides with significant advancements in AI and robotics</li>
+            </ul>
+            <p>These factors put us in a unique position to succeed not only in Japan but also on the global stage.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Ningen Robotics. All rights reserved. | Based in Tokyo, Japan</p>
+    </footer>
+</body>
+</html>

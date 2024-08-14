@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ningen Robotics</title>
+    <title>Contact Ningen Robotics - Pioneering the Future of Robotics</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
 
@@ -11,6 +11,8 @@
             --primary-color: #00ff9b;
             --bg-color: #000;
             --text-color: #fff;
+            --section-bg: rgba(255, 255, 255, 0.05);
+            --input-bg: rgba(255, 255, 255, 0.1);
         }
 
         * {
@@ -71,7 +73,7 @@
         }
 
         #hero {
-            height: 100vh;
+            height: 40vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -96,74 +98,80 @@
         }
 
         #hero h1 {
-            font-size: 64px;
+            font-size: 48px;
             font-weight: 700;
             margin-bottom: 20px;
             line-height: 1.2;
         }
 
-        #hero p {
-            font-size: 24px;
-            max-width: 600px;
-            margin: 0 auto 40px;
+        .section {
+            padding: 80px 0;
         }
 
-        .btn {
-            display: inline-block;
+        .section h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: var(--input-bg);
+            border: none;
+            border-radius: 5px;
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form button {
             background-color: var(--primary-color);
             color: var(--bg-color);
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
             font-weight: 700;
             transition: transform 0.3s ease;
         }
 
-        .btn:hover {
+        .contact-form button:hover {
             transform: translateY(-3px);
         }
 
-        #products {
-            padding: 100px 0;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .product-card {
-            background-color: rgba(255, 255, 255, 0.1);
+        .contact-info {
+            background-color: var(--section-bg);
+            padding: 30px;
             border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
         }
 
-        .product-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .product-info {
-            padding: 20px;
-        }
-
-        .product-info h3 {
+        .contact-info h3 {
             font-size: 24px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             color: var(--primary-color);
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
         }
 
         footer {
             text-align: center;
             padding: 40px 0;
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: var(--section-bg);
         }
     </style>
 </head>
@@ -172,43 +180,41 @@
         <nav class="container">
             <div class="logo">NINGEN ROBOTICS</div>
             <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#products">Products</a>
+                <a href="index.html">Home</a>
                 <a href="vision.html">About</a>
-                <a href="contact.html">Contact</a>
+                <a href="#contact">Contact</a>
             </div>
         </nav>
     </header>
 
     <section id="hero">
         <div class="content">
-            <h1>Pioneering the Future<br>of Robotics</h1>
-            <p>Integrating truly versatile robots into everyday life, driving the progress of tomorrow through safe and intelligent machines.</p>
-            <a href="#products" class="btn">Discover Our Products</a>
+            <h1>Contact Us</h1>
         </div>
     </section>
 
-    <section id="products" class="container">
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="mk1.webp" alt="Droid Mk.1">
-                <div class="product-info">
-                    <h3>Droid Mk.1</h3>
-                    <p>Our flagship robot, designed for versatility and easy customization.</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="s1.webp" alt="S1 Operating System">
-                <div class="product-info">
-                    <h3>S1 Operating System</h3>
-                    <p>Cutting-edge AI-based OS for advanced robotic control and interaction.</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="innovation.webp" alt="Open Innovation">
-                <div class="product-info">
-                    <h3>Open Innovation</h3>
-                    <p>Championing an open-ended, community-driven model for rapid advancement.</p>
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <!-- <div class="contact-grid">
+                <div class="contact-form">
+                    <form>
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="text" name="subject" placeholder="Subject">
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div> -->
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><strong>Address:</strong> Tokyo Bay Area, Tokyo, Japan</p>
+                    <p><strong>Email:</strong> info@ningenrobotics.com</p>
+                    <p><strong>Phone:</strong> +81 (0)3-XXXX-XXXX</p>
+                    <h3>Connect With Us</h3>
+                    <p>Follow us on social media for the latest updates:</p>
+                    <p>Twitter: @NingenRobotics</p>
+                    <p>LinkedIn: Ningen Robotics</p>
                 </div>
             </div>
         </div>
