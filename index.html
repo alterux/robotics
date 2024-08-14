@@ -170,24 +170,7 @@
     </style>
 </head>
 <body>
-    <script>
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            });
-    </script>
-    <!-- <header>
-        <nav class="container">
-            <div class="logo">NINGEN ROBOTICS</div>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#products">Products</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
-            </div>
-        </nav>
-    </header> -->
+    <div id="header-placeholder"></div>
 
     <section id="hero">
         <div class="background-image"></div>
@@ -229,6 +212,13 @@
     </footer>
 
     <script>
+        // Load the shared header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+            
         const backgroundElement = document.querySelector('.background-image');
         const images = [
             'media/assembly1.webp',
@@ -249,9 +239,9 @@
                 setTimeout(() => {
                     backgroundElement.style.opacity = 0;
                     
-                    setTimeout(changeBackground, 2000); // Wait for 2 seconds before starting the next cycle
-                }, 4000); // Show image for 4 seconds
-            }, 2000); // Wait for 2 seconds (black screen) before showing the next image
+                    setTimeout(changeBackground, 1000); // Wait for 2 seconds before starting the next cycle
+                }, 5000); // Show image for 4 seconds
+            }, 1000); // Wait for 2 seconds (black screen) before showing the next image
         }
 
         // Start the animation
