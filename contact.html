@@ -175,8 +175,15 @@
         }
     </style>
 </head>
+<script>
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-placeholder').innerHTML = data;
+        });
+</script>
 <body>
-    <header>
+    <!-- <header>
         <nav class="container">
             <div class="logo">NINGEN ROBOTICS</div>
             <div class="nav-links">
@@ -185,7 +192,7 @@
                 <a href="#contact">Contact</a>
             </div>
         </nav>
-    </header>
+    </header> -->
 
     <section id="hero">
         <div class="content">
