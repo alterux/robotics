@@ -235,6 +235,14 @@ footer {
         gap: 10px;
     }
 
+    header {
+        padding: 10px 20px; /* Adjust padding for mobile */
+    }
+
+    .logo {
+        font-size: 20px; /* Adjust font size for mobile */
+    }
+
     #hero h1 {
         font-size: 48px;
     }
@@ -262,7 +270,11 @@ footer {
 
 @media (max-width: 480px) {
     .logo {
-        font-size: 20px;
+        font-size: 18px; /* Further adjust font size for smaller screens */
+    }
+
+    header {
+        padding: 8px 16px; /* Further adjust padding for smaller screens */
     }
 
     #hero h1 {
