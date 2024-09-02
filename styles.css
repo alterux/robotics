@@ -36,7 +36,6 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
 }
 
 .translucent-box {
@@ -57,36 +56,35 @@ body {
 
 header {
     position: fixed;
-    width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
-    padding-top: 0;
-    padding-right: 20px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-}
-
-header .translucent-box {
-    border-radius: 0 0 10px 10px; /* Rounded bottom corners */
-    padding: 10px 20px;
-}
-
-nav {
+    padding: 10px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    background: none; /* Remove background box */
+    justify-content: flex-start; /* Align items to the left */
+}
+
+header .container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust gap for spacing */
+    justify-content: flex-start; /* Align items to the left */
 }
 
 .logo {
     font-size: 24px;
     font-weight: 700;
-    color: var(--primary-color);
+    color: white; /* Ensure text color is white */
+    text-decoration: none;
+    margin-right: 20px; /* Add margin to separate from nav links */
 }
 
 .nav-links {
     display: flex;
-    gap: 30px;
+    gap: 10px; /* Adjust gap for button spacing */
+    float: left; /* Float links to the left */
 }
 
 .nav-links a {
@@ -154,11 +152,10 @@ nav {
     background-color: var(--primary-color);
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 10px;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-    margin: 10px 0;
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
@@ -233,6 +230,7 @@ footer {
     .nav-links {
         flex-direction: column;
         gap: 10px;
+        float: none; /* Reset float for mobile */
     }
 
     header {
@@ -302,8 +300,7 @@ footer {
 
 #theme-toggle {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    right: 0px;
     z-index: 1001;
     background: none;
     border: none;
@@ -323,4 +320,134 @@ footer {
 
 .product-card a:hover {
     text-decoration: none; /* Ensure no underline on hover */
+}
+
+.nav-button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 400;
+    display: inline-flex; /* Allows content to be flexibly aligned */
+    align-items: center; /* Centers the image vertically within the button */
+    justify-content: center; /* Centers the image horizontally within the button */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: #b01030; /* Darker crimson red */
+    transform: translateY(-3px);
+}
+
+/* Hide the home button on the index page */
+body.index-page #home-button {
+    display: none;
+}
+
+#home-button .logo-image {
+    max-height: 100%; /* Image's max height respects button's padding */
+    max-width: 100%; /* Image's max width respects button's padding */
+    height: auto; /* Maintain aspect ratio */
+    width: auto; /* Maintain aspect ratio */
+    display: block; /* Prevents image from being inline and respects container dimensions */
+    pointer-events: none; /* Ensures clicking the image still triggers the link */
+}
+
+/* Add these styles for the hamburger menu */
+.hamburger {
+    display: block;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    z-index: 1001;
+}
+
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background-color: var(--text-color);
+    transition: all 0.3s;
+}
+
+.hamburger.open div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open div:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open div:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white; /* Set background to white */
+    z-index: 1000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* Prevent interaction */
+}
+
+.nav-overlay.open {
+    display: flex;
+    pointer-events: auto; /* Allow interaction when open */
+}
+
+.nav-overlay a {
+    font-size: 24px;
+    margin: 10px 0;
+    color: var(--text-color); /* Ensure text color is correct */
+    text-decoration: none; /* Remove underline */
+}
+
+.nav-overlay a:hover {
+    color: var(--primary-color); /* Change color on hover */
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* Show hamburger menu on mobile devices */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex; /* Show hamburger menu on mobile */
+    }
+
+    .nav-links {
+        display: none; /* Hide regular nav links on mobile */
+    }
+}
+
+/* Ensure the overlay covers the theme toggle button */
+#theme-toggle {
+    z-index: 999; /* Lower than the nav-overlay */
+}
+
+/* Style the nav links as a list in the overlay */
+.nav-overlay .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Add gap between items */
 }
