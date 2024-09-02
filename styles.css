@@ -237,6 +237,7 @@ footer {
 
     header {
         padding: 10px 20px; /* Adjust padding for mobile */
+        height: auto; /* Ensure height adjusts to content */
     }
 
     .logo {
@@ -275,6 +276,11 @@ footer {
 
     header {
         padding: 8px 16px; /* Further adjust padding for smaller screens */
+        height: auto; /* Ensure height adjusts to content */
+    }
+
+    .nav-links {
+        gap: 5px; /* Reduce gap for smaller screens */
     }
 
     #hero h1 {
