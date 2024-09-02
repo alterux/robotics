@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+:root {
+    --primary-color: #dc143c; /* Crimson red */
+    --bg-color: #fff; /* Default to light mode */
+    --text-color: #333;
+    --dark-bg-color: #1a1a1a; /* Dark mode background */
+    --dark-text-color: #f5f5f5; /* Dark mode text color */
+    --header-height: 60px; /* Adjust this value based on your header's actual height */
+    --translucent-light: rgba(255, 255, 255, 0.1); /* Adjusted light translucent background */
+    --translucent-dark: rgba(0, 0, 0, 0.3); /* Dark translucent background */
+    --product-card-light: rgba(255, 255, 255, 0.2); /* Light translucent background for product cards */
+    --product-card-dark: rgba(0, 0, 0, 0.4); /* Dark translucent background for product cards */
+}
+
+body.dark-mode {
+    --bg-color: var(--dark-bg-color);
+    --text-color: var(--dark-text-color);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.translucent-box {
+    background-color: var(--translucent-light);
+    backdrop-filter: blur(5px); /* Adjust blur for better translucency */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for elegance */
+    border: none; /* Ensure no border */
+}
+
+.dark-mode .translucent-box {
+    background-color: var(--translucent-dark);
+    backdrop-filter: blur(5px); /* Adjust blur for better translucency in dark mode */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adjust shadow for dark mode */
+    border: none; /* Ensure no border */
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 10px 20px;
+}
+
+header .translucent-box {
+    border-radius: 0 0 10px 10px; /* Rounded bottom corners */
+    padding: 10px 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none; /* Remove underline */
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
+#hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: var(--header-height);
+    box-sizing: border-box;
+}
+
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1s ease-in-out;
+    z-index: -1;
+}
+
+.content-wrapper {
+    min-height: 100vh;
+    padding-bottom: 60px; /* Adjust based on your footer height */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+#hero h1 {
+    font-size: 64px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: var(--primary-color);
+}
+
+#hero p {
+    font-size: 24px;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 0;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    background-color: #b01030; /* Darker crimson red */
+}
+
+#products {
+    padding: 100px 0;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted min-width */
+    gap: 30px; /* Adjusted gap */
+    padding: 0 20px; /* Add padding to the grid */
+}
+
+.product-card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    padding: 10px;
+    background-color: var(--product-card-light); /* Ensure background color */
+    backdrop-filter: blur(5px); /* Adjust blur for better translucency */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for elegance */
+    border: none; /* Ensure no border */
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px; /* Adjusted height */
+    object-fit: cover;
+    border-radius: 10px; /* Add border-radius to images */
+}
+
+.product-info {
+    padding: 15px; /* Reduced padding */
+}
+
+.product-info h3 {
+    font-size: 22px; /* Adjusted font size */
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+footer {
+    background-color: var(--translucent-light);
+    backdrop-filter: blur(10px);
+    color: var(--text-color);
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    position: relative;
+    border: none; /* Ensure no border */
+}
+
+.dark-mode footer {
+    background-color: var(--translucent-dark);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adjust shadow for dark mode */
+    border: none; /* Ensure no border */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #hero h1 {
+        font-size: 48px;
+    }
+
+    #hero p {
+        font-size: 18px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card img {
+        height: 150px; /* Adjusted height */
+    }
+
+    .product-info h3 {
+        font-size: 20px; /* Adjusted font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+
+    #hero h1 {
+        font-size: 36px;
+    }
+
+    #hero p {
+        font-size: 16px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+    }
+
+    .product-info h3 {
+        font-size: 18px; /* Adjusted font size */
+    }
+}
+
+#theme-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1001;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: var(--primary-color);
+}
+
+.dark-mode #theme-toggle {
+    color: var(--primary-color);
+}
+
+.product-card a {
+    text-decoration: none; /* Remove underline for product card links */
+    color: inherit; /* Inherit color from parent */
+}
+
+.product-card a:hover {
+    text-decoration: none; /* Ensure no underline on hover */
+}
