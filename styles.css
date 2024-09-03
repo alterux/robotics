@@ -46,6 +46,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for elegance */
     border: none; /* Ensure no border */
+    text-align: center; /* Center all text by default */
 }
 
 .dark-mode .translucent-box {
@@ -53,6 +54,54 @@ body {
     backdrop-filter: blur(5px); /* Adjust blur for better translucency in dark mode */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adjust shadow for dark mode */
     border: none; /* Ensure no border */
+    text-align: center; /* Center all text by default */
+}
+
+/* Ensure lists are left-aligned within translucent-box */
+.translucent-box ul,
+.translucent-box ol {
+    margin: 20px 0;
+    padding-left: 40px; /* Adjust padding for better indentation */
+    list-style-position: outside; /* Ensure list markers are outside */
+    text-align: left; /* Left-align list items */
+}
+
+.translucent-box li {
+    margin-bottom: 10px; /* Add space between list items */
+    line-height: 1.5; /* Adjust line height for better readability */
+}
+
+/* Ensure proper spacing between list markers and text */
+.translucent-box ul li::marker,
+.translucent-box ol li::marker {
+    margin-right: 10px; /* Add space between list markers and text */
+}
+
+/* Center titles within translucent-box */
+.translucent-box h1,
+.translucent-box h2,
+.translucent-box h3,
+.translucent-box h4,
+.translucent-box h5,
+.translucent-box h6 {
+    text-align: center; /* Center the titles */
+}
+
+/* Style links as buttons within translucent-box */
+.translucent-box a {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.translucent-box a:hover {
+    background-color: #b01030; /* Darker shade for hover effect */
+    transform: translateY(-3px);
 }
 
 /* Update the header styles */

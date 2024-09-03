@@ -51,6 +51,9 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((error) => console.error("Error loading footer:", error));
 
+  // Load Markdown content and distribute it based on custom tags
+  loadMarkdownContent("content.md");
+
   // Theme management
   function updateThemeToggleText() {
     const isDarkMode = document.body.classList.contains("dark-mode");
@@ -203,5 +206,32 @@ document.addEventListener("DOMContentLoaded", function () {
           link.getAttribute("href") === currentPath
         );
       });
+  }
+
+  function loadMarkdownContent(markdownFilePath) {
+    fetch(markdownFilePath)
+      .then((response) => response.text())
+      .then((markdown) => {
+        const currentPage = window.location.pathname.split("/").pop().split(".")[0];
+        console.log("Current Page:", currentPage); // Debugging line
+        const sections = markdown
+          .split(/<!-- section:(.*?):(.*?) -->/)
+          .filter(Boolean);
+        for (let i = 0; i < sections.length; i += 3) {
+          const page = sections[i].trim();
+          const sectionId = sections[i + 1].trim();
+          const sectionContent = marked.parse(sections[i + 2].trim());
+          console.log("Page:", page, "Section ID:", sectionId); // Debugging line
+          if (page === currentPage) {
+            const targetElement = document.getElementById(
+              `markdown-content-${sectionId}`
+            );
+            if (targetElement) {
+              targetElement.innerHTML = sectionContent;
+            }
+          }
+        }
+      })
+      .catch((error) => console.error("Error loading markdown file:", error));
   }
 });
