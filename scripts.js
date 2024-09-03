@@ -220,8 +220,15 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let i = 0; i < sections.length; i += 3) {
           const page = sections[i].trim();
           const sectionId = sections[i + 1].trim();
-          const sectionContent = marked.parse(sections[i + 2].trim());
+          let sectionContent = marked.parse(sections[i + 2].trim());
           console.log("Page:", page, "Section ID:", sectionId); // Debugging line
+
+          // Add class to specific links to style them as buttons
+          sectionContent = sectionContent.replace(
+            /<a href="(about-us\.html|modularity\.html|master-plan\.html|get-in-touch\.html)">/g,
+            '<a href="$1" class="button-link">'
+          );
+
           if (page === currentPage) {
             const targetElement = document.getElementById(
               `markdown-content-${sectionId}`

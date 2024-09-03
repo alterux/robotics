@@ -1,7 +1,11 @@
 <!-- section:index:hero1 -->
-# Welcome to Ningen Robotics
+# 人間 Robotics
 
-We are pioneering the future of robotics by integrating truly versatile robots into everyday life. Our goal is to enable AI to interact seamlessly with the physical world.
+人間 is Japanese for “Human,” embodying the core value of Ningen Robotics. We are dedicated to creating safe, modular, humanoid robots that not only enhance human life but also revolutionize the way we interact with technology—bridging the gap between man and machine for a smarter, more connected future.
+
+Our goal is to enable AI to interact seamlessly with the physical world.
+
+![Ningen Robotics](media/mk1.webp)
 
 ## Our Mission
 
@@ -12,9 +16,11 @@ To drive the progress of tomorrow through safe and intelligent machines. We are 
 
 
 <!-- section:about-us:hero1 -->
-# About Ningen Robotics
+# About us
 
 Ningen Robotics is a pioneering company in robotics innovation and deployment. We are uniquely positioned in the vibrant technology ecosystem of Tokyo, which offers abundant talent and partnership opportunities. The demographic challenges in Japan and government initiatives promoting robotics and AI development provide an ideal backdrop for our growth.
+
+![Tokyo Office](media/about-us.webp)
 
 ## Our Vision
 
@@ -32,12 +38,16 @@ Located in Tokyo, we benefit from a vibrant technology ecosystem and established
 
 We have strong partnerships with leading AI companies to integrate cutting-edge AI techniques into our offerings, ensuring that our products are at the forefront of innovation.
 
+[Modularity](modularity.html)
+
 
 
 <!-- section:modularity:hero1 -->
-# Modularity at Ningen Robotics
+# Modularity at its core
 
 Our engineering vision focuses on three core principles: simplicity, modularity, and customizability.
+
+![Modular Design](media/modularity.webp)
 
 ## Simplicity
 
@@ -51,12 +61,16 @@ Our robots are built with interchangeable components, allowing for easy upgrades
 
 We empower our customers to tailor our robots to their specific requirements. From hardware to software, every aspect of our robots can be modified to enhance functionality and usability.
 
+[Master Plan](master-plan.html)
+
 
 
 <!-- section:master-plan:hero1 -->
 # Master Plan
 
 At Ningen Robotics, we have a clear roadmap for the future of robotics deployment. We follow a strategic 3-step plan for the deployment of our technology over the next five years.
+
+![Master Plan](media/master-plan.webp)
 
 ## Our Core Principles
 - **Simplicity**: We strive for elegant, straightforward designs that are easy to understand and maintain.
@@ -78,12 +92,16 @@ The final phase involves the deployment of our robots to the general consumer ma
 
 During these phases, we will also develop the S1 operating system, a highly generalized OS designed to run on a variety of hardware. Collaborations with large AI companies will ensure that cutting-edge AI techniques are integrated into our OS, enhancing the capabilities of our robots.
 
+[Get in Touch](get-in-touch.html)
+
 
 
 <!-- section:get-in-touch:hero1 -->
-# Get in Touch
+# Get in touch with us
 
 We would love to hear from you! Whether you have questions about our products, want to discuss a potential partnership, or just want to learn more about Ningen Robotics, please reach out to us.
+
+<!-- ![Contact Us](media/contact-us.jpg) -->
 
 ## Contact Information
 
@@ -95,7 +113,7 @@ We would love to hear from you! Whether you have questions about our products, w
 
 Follow us on social media for the latest updates:
 - **Twitter**: @NingenRobotics
-- **LinkedIn**: [Ningen Robotics](https://www.linkedin.com/company/ningenrobotics)
+- **LinkedIn**: https://www.linkedin.com/company/ningenrobotics
 
 ## Join Our Community
 

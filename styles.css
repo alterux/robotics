@@ -88,7 +88,7 @@ body {
 }
 
 /* Style links as buttons within translucent-box */
-.translucent-box a {
+.translucent-box a.button-link {
     display: inline-block;
     background-color: var(--primary-color);
     color: white;
@@ -99,9 +99,19 @@ body {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.translucent-box a:hover {
+.translucent-box a.button-link:hover {
     background-color: #b01030; /* Darker shade for hover effect */
     transform: translateY(-3px);
+}
+
+/* Style images within translucent-box */
+.translucent-box img {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    width: auto;
+    border-radius: 10px;
+    margin: 20px 0;
 }
 
 /* Update the header styles */
