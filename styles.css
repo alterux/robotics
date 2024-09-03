@@ -42,6 +42,7 @@ body {
     background-color: var(--translucent-light);
     backdrop-filter: blur(5px); /* Adjust blur for better translucency */
     padding: 20px;
+    margin: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for elegance */
     border: none; /* Ensure no border */
@@ -166,6 +167,7 @@ header .container {
     border: none;
     padding: 10px 10px;
     cursor: pointer;
+    border-radius: 5px;
     text-decoration: none;
     display: inline-block;
     transition: transform 0.3s ease, background-color 0.3s ease;
@@ -193,9 +195,12 @@ header .container {
     transition: transform 0.3s ease;
     padding: 10px;
     background-color: var(--product-card-light); /* Ensure background color */
-    backdrop-filter: blur(5px); /* Adjust blur for better translucency */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for elegance */
     border: none; /* Ensure no border */
+}
+
+.dark-mode .product-card {
+    background-color: var(--product-card-dark); /* Ensure background color */
 }
 
 .product-card:hover {
@@ -293,6 +298,11 @@ footer {
     .product-info h3 {
         font-size: 20px; /* Adjusted font size */
     }
+
+    /* Add padding to text boxes for better readability */
+    .translucent-box, .product-card, .nav-overlay a, .footer-content {
+        padding: 10px 15px; /* Add padding to the text boxes */
+    }
 }
 
 @media (max-width: 480px) {
@@ -324,6 +334,11 @@ footer {
     .product-info h3 {
         font-size: 18px; /* Adjusted font size */
     }
+
+    /* Add padding to text boxes for better readability */
+    .translucent-box, .product-card, .nav-overlay a, .footer-content {
+        padding: 10px 15px; /* Add padding to the text boxes */
+    }
 }
 
 #theme-toggle {
@@ -338,7 +353,6 @@ footer {
     padding: 10px 15px; /* Match padding of other buttons */
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.5); /* Increase opacity for better visibility */
-    /* backdrop-filter: blur(5px); */
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
     cursor: pointer;
     font-size: 14px;
@@ -419,6 +433,7 @@ footer {
     margin-right: 10px; /* Add a small margin to separate from other buttons */
     transform: translateX(0);
     background-color: var(--translucent-light); /* Match the dark mode background color of the hamburger button */
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(0, 0, 0, 0.1); /* Add subtle border for visibility */
     border-radius: 5px; /* Match the border radius of the hamburger button */
     cursor: pointer; /* Add cursor pointer for better UX */
