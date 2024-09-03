@@ -54,23 +54,26 @@ body {
     border: none; /* Ensure no border */
 }
 
+/* Update the header styles */
 header {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 1001; /* Ensure it's above the nav-overlay */
     padding: 10px;
     display: flex;
     align-items: center;
-    background: none; /* Remove background box */
-    justify-content: flex-start; /* Align items to the left */
+    background: none;
+    justify-content: flex-start;
 }
 
 header .container {
     display: flex;
     align-items: center;
-    gap: 10px; /* Adjust gap for spacing */
-    justify-content: flex-start; /* Align items to the left */
+    justify-content: flex-start;
+    width: 100%;
+    transition: all 0.3s ease;
+    gap: 0; /* Remove the gap between elements */
 }
 
 .logo {
@@ -78,25 +81,35 @@ header .container {
     font-weight: 700;
     color: white; /* Ensure text color is white */
     text-decoration: none;
-    margin-right: 20px; /* Add margin to separate from nav links */
+    margin-right: 20px; /* Reduce the margin to bring elements closer */
 }
 
 .nav-links {
     display: flex;
-    gap: 10px; /* Adjust gap for button spacing */
-    float: left; /* Float links to the left */
+    gap: 10px; /* This ensures equal spacing between buttons */
+    transition: transform 0.3s ease;
 }
 
-.nav-links a {
+.nav-links a, .nav-overlay a {
     color: var(--text-color);
-    text-decoration: none; /* Remove underline */
+    text-decoration: none;
     font-weight: 400;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: var(--translucent-light);
+    backdrop-filter: blur(5px);
 }
 
-.nav-links a:hover {
-    color: var(--primary-color);
-    text-decoration: none; /* Ensure no underline on hover */
+.dark-mode .nav-links a, .dark-mode .nav-overlay a {
+    background-color: var(--translucent-dark);
+}
+
+.nav-links a:hover, .nav-overlay a:hover,
+.nav-links a.active, .nav-overlay a.active {
+    color: white;
+    background-color: var(--primary-color);
+    border-bottom-color: white;
 }
 
 #hero {
@@ -217,6 +230,34 @@ footer {
     width: 100%;
     position: relative;
     border: none; /* Ensure no border */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.copyright {
+    font-size: 14px;
+}
+
+/* Hide desktop toggle on mobile */
+@media (max-width: 768px) {
+    #desktop-theme-toggle {
+        display: none;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
 
 .dark-mode footer {
@@ -299,18 +340,44 @@ footer {
 }
 
 #theme-toggle {
-    position: absolute;
-    right: 0px;
-    z-index: 1001;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    color: var(--primary-color);
+    display: none; /* Hide the old theme toggle completely */
 }
 
-.dark-mode #theme-toggle {
-    color: var(--primary-color);
+/* Desktop theme toggle */
+#desktop-theme-toggle {
+    position: static;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: var(--translucent-light);
+    backdrop-filter: blur(5px);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-color);
+    margin-left: 10px;
+}
+
+.dark-mode #desktop-theme-toggle {
+    background-color: var(--translucent-dark);
+}
+
+#desktop-theme-toggle:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#desktop-theme-toggle span {
+    margin-left: 5px;
+}
+
+/* Hide desktop toggle on mobile */
+@media (max-width: 768px) {
+    #desktop-theme-toggle {
+        display: none;
+    }
 }
 
 .product-card a {
@@ -323,8 +390,8 @@ footer {
 }
 
 .nav-button {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--translucent-light); /* Change from var(--primary-color) */
+    color: var(--text-color); /* Change from white */
     padding: 10px 15px;
     border-radius: 5px;
     text-decoration: none;
@@ -332,50 +399,101 @@ footer {
     display: inline-flex; /* Allows content to be flexibly aligned */
     align-items: center; /* Centers the image vertically within the button */
     justify-content: center; /* Centers the image horizontally within the button */
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode .nav-button {
+    background-color: var(--translucent-dark);
 }
 
 .nav-button:hover {
-    background-color: #b01030; /* Darker crimson red */
+    background-color: var(--primary-color);
+    color: white;
     transform: translateY(-3px);
 }
 
-/* Hide the home button on the index page */
-body.index-page #home-button {
-    display: none;
+/* Style for the home button */
+#home-button {
+    position: relative;
+    z-index: 1003;
+    display: flex;
+    transition: opacity 0.3s ease, transform 0.3s ease, width 0.3s ease;
+    opacity: 1;
+    margin-right: 10px; /* Add a small margin to separate from other buttons */
+    transform: translateX(0);
 }
 
-#home-button .logo-image {
-    max-height: 100%; /* Image's max height respects button's padding */
-    max-width: 100%; /* Image's max width respects button's padding */
-    height: auto; /* Maintain aspect ratio */
-    width: auto; /* Maintain aspect ratio */
-    display: block; /* Prevents image from being inline and respects container dimensions */
-    pointer-events: none; /* Ensures clicking the image still triggers the link */
+#home-button.hidden {
+    transform: translateX(-100%); /* Slide out of view equal to its own width */
+    opacity: 0;
+    margin-right: 0px; /* Add a small margin to separate from other buttons */
 }
 
-/* Add these styles for the hamburger menu */
+/* Adjust for non-index pages. */
+body:not(.index-page) #home-button {
+    width: auto;
+    opacity: 1;
+    margin-right: 10px; /* This should match the gap in nav-links */
+}
+
+/* Update responsive adjustments */
+@media (max-width: 768px) {
+    header .container {
+        justify-content: space-between;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    #home-button {
+        position: static;
+        margin-right: 0;
+    }
+
+    body:not(.index-page) .nav-links {
+        margin-left: 0;
+    }
+}
+
+/* Update hamburger and close button styles */
 .hamburger {
-    display: block;
+    display: none;
     cursor: pointer;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 30px;
-    background: none;
+    width: 40px;
+    height: 40px;
+    background-color: var(--translucent-light);
+    backdrop-filter: blur(5px);
     border: none;
-    z-index: 1001;
+    border-radius: 5px;
+    z-index: 1002;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    transition: all 0.3s ease-in-out;
+    justify-content: center;
+    align-items: center;
+}
+
+.dark-mode .hamburger {
+    background-color: var(--translucent-dark);
+}
+
+.hamburger:hover {
+    background-color: var(--primary-color);
 }
 
 .hamburger div {
-    width: 30px;
-    height: 3px;
+    width: 24px;
+    height: 2px;
     background-color: var(--text-color);
-    transition: all 0.3s;
+    margin: 4px 0;
+    transition: all 0.3s ease-in-out;
 }
 
+/* Animation for hamburger to close transition */
 .hamburger.open div:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: rotate(45deg) translate(7px, 7px);
 }
 
 .hamburger.open div:nth-child(2) {
@@ -383,7 +501,81 @@ body.index-page #home-button {
 }
 
 .hamburger.open div:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Adjust the hamburger lines for better alignment */
+.hamburger div {
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-color);
+    margin: 4px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Ensure consistent size and position for both states */
+.hamburger, .hamburger.open {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+}
+
+.close-button {
+    font-size: 24px;
+    color: var(--text-color);
+    display: none;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: var(--translucent-light);
+    backdrop-filter: blur(5px);
+    border: none;
+    border-radius: 5px;
+    z-index: 1002;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    transition: all 0.3s ease-in-out;
+    justify-content: center;
+    align-items: center;
+}
+
+.dark-mode .close-button {
+    background-color: var(--translucent-dark);
+}
+
+.close-button:hover {
+    background-color: var(--primary-color);
+}
+
+.close-button::before {
+    content: "\00d7";
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 40px; /* Ensure vertical centering */
+    font-size: 24px; /* Explicitly set font size */
+}
+
+/* Ensure consistent size and position for both buttons */
+.hamburger, .close-button, .hamburger.open {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+}
+
+/* Maintain hover state during transition */
+.hamburger:hover, .close-button:hover, 
+.hamburger.open:hover, .close-button.open:hover {
+    background-color: var(--primary-color);
 }
 
 .nav-overlay {
@@ -393,49 +585,101 @@ body.index-page #home-button {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: white; /* Set background to white */
+    background-color: var(--bg-color); /* Use the theme's background color */
     z-index: 1000;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* Change to space-between */
+    opacity: 0; /* Start with 0 opacity */
+    transition: opacity 0.3s ease-in-out; /* Add transition for opacity */
     pointer-events: none; /* Prevent interaction */
+    padding: 80px 20px 20px; /* Add padding at the bottom */
 }
 
 .nav-overlay.open {
     display: flex;
+    opacity: 1; /* Fade in to full opacity */
     pointer-events: auto; /* Allow interaction when open */
+}
+
+.nav-overlay .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the left in the overlay */
+    gap: 20px; /* Add gap between items */
+    margin-bottom: auto; /* Push links to the top */
 }
 
 .nav-overlay a {
     font-size: 24px;
     margin: 10px 0;
-    color: var(--text-color); /* Ensure text color is correct */
+    color: var(--text-color); /* Use the theme's text color */
     text-decoration: none; /* Remove underline */
+    background-color: var(--translucent-light);
+    backdrop-filter: blur(5px);
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode .nav-overlay a {
+    background-color: var(--translucent-dark);
 }
 
 .nav-overlay a:hover {
     color: var(--primary-color); /* Change color on hover */
+    background-color: var(--primary-color);
 }
 
-.close-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 30px;
-    color: var(--text-color);
+.nav-overlay #mobile-theme-toggle {
+    margin-top: auto; /* Push to the bottom */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: var(--translucent-light);
+    backdrop-filter: blur(5px);
+    transition: background-color 0.3s ease;
     cursor: pointer;
+    font-size: 16px;
+}
+
+.dark-mode .nav-overlay #mobile-theme-toggle {
+    background-color: var(--translucent-dark);
+}
+
+.nav-overlay #mobile-theme-toggle:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.nav-overlay #mobile-theme-toggle span {
+    margin-left: 10px;
 }
 
 /* Show hamburger menu on mobile devices */
 @media (max-width: 768px) {
     .hamburger {
-        display: flex; /* Show hamburger menu on mobile */
+        display: flex;
+        flex-direction: column;
     }
 
     .nav-links {
         display: none; /* Hide regular nav links on mobile */
+    }
+
+    #theme-toggle {
+        display: none; /* Hide the original theme toggle on mobile */
+    }
+
+    .nav-overlay #theme-toggle {
+        display: block; /* Show theme toggle inside nav overlay */
+        margin-top: 20px;
+    }
+
+    .nav-overlay.open .close-button {
+        display: flex;
     }
 }
 
@@ -444,10 +688,25 @@ body.index-page #home-button {
     z-index: 999; /* Lower than the nav-overlay */
 }
 
-/* Style the nav links as a list in the overlay */
-.nav-overlay .nav-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px; /* Add gap between items */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hamburger {
+        top: 10px;
+        right: 10px;
+    }
+
+    .close-button {
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Ensure the home button doesn't interfere with the hamburger on small screens */
+    #home-button {
+        max-width: calc(100% - 60px); /* Adjust based on hamburger button width */
+    }
+
+    /* Show the home button when the nav-overlay is open, even on the index page */
+    .nav-overlay.open #home-button {
+        display: flex;
+    }
 }
