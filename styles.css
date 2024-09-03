@@ -778,3 +778,23 @@ body:not(.index-page) #home-button {
     outline: none; /* Remove outline */
     box-shadow: none; /* Remove any box-shadow */
 }
+
+.info-card {
+    margin: 100px auto; /* Add large margin around the card and center it */
+    max-width: 800px; /* Set a maximum width for the card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure content is spaced evenly */
+    padding: 20px; /* Add padding for content */
+    background-color: var(--translucent-light); /* Ensure background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for elegance */
+    border-radius: 10px; /* Add border radius */
+    overflow: hidden; /* Ensure content does not overflow */
+}
+
+.info-card img {
+    height: auto; /* Adjust height to maintain aspect ratio */
+    width: 100%; /* Ensure image takes full width */
+    object-fit: cover; /* Ensure image covers the area */
+    border-radius: 10px; /* Add border-radius to images */
+}
