@@ -115,8 +115,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Hamburger menu toggle functionality
     function toggleMenu() {
-    const menuOpen = navOverlay.classList.toggle("open");
-      if (!menuOpen &&document.body.classList.contains("index-page")) {
+      const menuOpen = navOverlay.classList.toggle("open");
+      if (!menuOpen && document.body.classList.contains("index-page")) {
         homeButton.classList.toggle("hidden", window.scrollY <= 100);
       } else {
         homeButton.classList.remove("hidden");

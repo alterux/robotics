@@ -109,7 +109,6 @@ header .container {
 .nav-links a.active, .nav-overlay a.active {
     color: white !important; /* Ensure text color changes */
     background-color: var(--primary-color) !important; /* Ensure background color changes */
-    border-bottom-color: white;
 }
 
 #hero {
@@ -223,16 +222,11 @@ header .container {
 
 footer {
     background-color: var(--translucent-light);
-    backdrop-filter: blur(10px);
-    color: var(--text-color);
-    text-align: center;
     padding: 10px 0;
-    width: 100%;
-    position: relative;
-    border: none; /* Ensure no border */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+.dark-mode footer {
+    background-color: var(--translucent-dark);
 }
 
 .footer-content {
@@ -240,7 +234,6 @@ footer {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1200px;
     padding: 0 20px;
 }
 
@@ -258,12 +251,6 @@ footer {
         flex-direction: column;
         gap: 10px;
     }
-}
-
-.dark-mode footer {
-    background-color: var(--translucent-dark);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adjust shadow for dark mode */
-    border: none; /* Ensure no border */
 }
 
 /* Responsive Design */
@@ -344,32 +331,35 @@ footer {
 }
 
 /* Desktop theme toggle */
-#desktop-theme-toggle {
-    position: static;
+#desktop-theme-toggle, #mobile-theme-toggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 5px 10px;
+    padding: 10px 15px; /* Match padding of other buttons */
     border-radius: 5px;
-    background-color: var(--translucent-light);
-    backdrop-filter: blur(5px);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.5); /* Increase opacity for better visibility */
+    /* backdrop-filter: blur(5px); */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
     cursor: pointer;
     font-size: 14px;
     color: var(--text-color);
     margin-left: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Add subtle border for visibility */
+    outline: none; /* Ensure no outline */
 }
 
-.dark-mode #desktop-theme-toggle {
+.dark-mode #desktop-theme-toggle, .dark-mode #mobile-theme-toggle {
     background-color: var(--translucent-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Adjust border for dark mode */
 }
 
-#desktop-theme-toggle:hover {
+#desktop-theme-toggle:hover, #mobile-theme-toggle:hover {
     background-color: var(--primary-color) !important; /* Ensure background color changes */
     color: white !important; /* Ensure text color changes */
+    transform: translateY(-3px);
 }
 
-#desktop-theme-toggle span {
+#desktop-theme-toggle span, #mobile-theme-toggle span {
     margin-left: 5px;
 }
 
@@ -390,7 +380,7 @@ footer {
 }
 
 .nav-button {
-    background-color: var(--translucent-light); /* Change from var(--primary-color) */
+    background-color: rgba(255, 255, 255, 0.5); /* Increase opacity for better visibility */
     color: var(--text-color); /* Change from white */
     padding: 10px 15px;
     border-radius: 5px;
@@ -400,10 +390,13 @@ footer {
     align-items: center; /* Centers the image vertically within the button */
     justify-content: center; /* Centers the image horizontally within the button */
     transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Add subtle border for visibility */
+    outline: none; /* Ensure no outline */
 }
 
 .dark-mode .nav-button {
     background-color: var(--translucent-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Adjust border for dark mode */
 }
 
 .nav-button:hover {
@@ -425,15 +418,15 @@ footer {
     opacity: 1;
     margin-right: 10px; /* Add a small margin to separate from other buttons */
     transform: translateX(0);
-    background-color: var(--translucent-light); /* Match the background color of the hamburger button */
-    backdrop-filter: blur(5px); /* Match the backdrop filter of the hamburger button */
-    border: none; /* Ensure no border */
+    background-color: var(--translucent-light); /* Match the dark mode background color of the hamburger button */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Add subtle border for visibility */
     border-radius: 5px; /* Match the border radius of the hamburger button */
     cursor: pointer; /* Add cursor pointer for better UX */
 }
 
 .dark-mode #home-button {
     background-color: var(--translucent-dark); /* Match the dark mode background color of the hamburger button */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Adjust border for dark mode */
 }
 
 #home-button.hidden {
@@ -634,14 +627,17 @@ body:not(.index-page) #home-button {
     font-size: 24px; /* Match the font size of the original home button */
     padding: 10px 15px; /* Match the padding of the original home button */
     border-radius: 5px; /* Match the border-radius of the original home button */
-    background-color: var(--translucent-light);
+    background-color: rgba(255, 255, 255, 0.5); /* Increase opacity for better visibility */
     backdrop-filter: blur(5px);
     transition: background-color 0.3s ease, color 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Add subtle border for visibility */
+    outline: none; /* Ensure no outline */
 }
 
 .dark-mode .nav-overlay #home-button,
 .dark-mode .nav-overlay #overlay-home-button {
     background-color: var(--translucent-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Adjust border for dark mode */
 }
 
 .nav-overlay #home-button:hover,
@@ -663,15 +659,18 @@ body:not(.index-page) #home-button {
     margin: 10px 0;
     color: var(--text-color); /* Use the theme's text color */
     text-decoration: none; /* Remove underline */
-    background-color: var(--translucent-light);
+    background-color: rgba(255, 255, 255, 0.5); /* Increase opacity for better visibility */
     backdrop-filter: blur(5px);
     padding: 10px 15px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Add subtle border for visibility */
+    outline: none; /* Ensure no outline */
 }
 
 .dark-mode .nav-overlay a {
     background-color: var(--translucent-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Adjust border for dark mode */
 }
 
 .nav-overlay a:hover {
@@ -682,25 +681,30 @@ body:not(.index-page) #home-button {
 .nav-overlay #mobile-theme-toggle {
     margin-top: auto;
     align-self: center; /* Center the toggle button */
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 10px 15px;
     border-radius: 5px;
-    background-color: var(--translucent-light);
+    background-color: rgba(255, 255, 255, 0.5); /* Increase opacity for better visibility */
     backdrop-filter: blur(5px);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
     cursor: pointer;
     font-size: 16px;
+    color: var(--text-color);
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Add subtle border for visibility */
+    outline: none; /* Ensure no outline */
 }
 
 .dark-mode .nav-overlay #mobile-theme-toggle {
     background-color: var(--translucent-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Adjust border for dark mode */
 }
 
 .nav-overlay #mobile-theme-toggle:hover {
     background-color: var(--primary-color) !important; /* Ensure background color changes */
     color: white !important; /* Ensure text color changes */
+    transform: translateY(-3px);
 }
 
 .nav-overlay #mobile-theme-toggle span {
