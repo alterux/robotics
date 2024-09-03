@@ -1,7 +1,7 @@
 <!-- section:index:hero1 -->
 # 人間 Robotics
 
-人間 is Japanese for “Human,” embodying the core value of Ningen Robotics. We are dedicated to creating safe, modular, humanoid robots that not only enhance human life but also revolutionize the way we interact with technology—bridging the gap between man and machine for a smarter, more connected future.
+人間 is the Japanese word for “Human,” embodying the core value of Ningen Robotics. We are dedicated to creating safe, modular, humanoid robots that not only enhance human life but also revolutionize the way we interact with technology—bridging the gap between man and machine for a smarter, more connected future.
 
 Our goal is to enable AI to interact seamlessly with the physical world.
 
