@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Page specific setup
   if (
     window.location.pathname.endsWith("index.html") ||
-    window.location.pathname.endsWith("/")
+    window.location.pathname === "/"
   ) {
     document.body.classList.add("index-page");
   }
@@ -212,7 +212,8 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(markdownFilePath)
       .then((response) => response.text())
       .then((markdown) => {
-        const currentPage = window.location.pathname.split("/").pop().split(".")[0];
+        let currentPage = window.location.pathname.split("/").pop().split(".")[0];
+        if (!currentPage) currentPage = "index"; // Handle root path
         console.log("Current Page:", currentPage); // Debugging line
         const sections = markdown
           .split(/<!-- section:(.*?):(.*?) -->/)
