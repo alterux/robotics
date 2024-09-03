@@ -589,11 +589,12 @@ body:not(.index-page) #home-button {
     z-index: 1000;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Change to space-between */
+    justify-content: space-between; /* Distribute space between elements */
     opacity: 0; /* Start with 0 opacity */
     transition: opacity 0.3s ease-in-out; /* Add transition for opacity */
     pointer-events: none; /* Prevent interaction */
-    padding: 80px 20px 20px; /* Add padding at the bottom */
+    padding: 80px 20px 20px;
+    overflow: hidden; /* Prevent scrolling inside the menu */
 }
 
 .nav-overlay.open {
@@ -605,9 +606,43 @@ body:not(.index-page) #home-button {
 .nav-overlay .nav-links {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align items to the left in the overlay */
-    gap: 20px; /* Add gap between items */
-    margin-bottom: auto; /* Push links to the top */
+    align-items: center; /* Center the navigation items */
+    justify-content: center;
+    flex-grow: 1; /* Allow it to grow and center vertically */
+    gap: 20px;
+}
+
+.nav-overlay #home-button,
+.nav-overlay #overlay-home-button {
+    position: absolute;
+    top: 10px; /* Match the top position of the header */
+    left: 10px; /* Match the left position of the header */
+    display: flex !important; /* Always show in hamburger menu */
+    font-size: 24px; /* Match the font size of the original home button */
+    padding: 10px 15px; /* Match the padding of the original home button */
+    border-radius: 5px; /* Match the border-radius of the original home button */
+    background-color: var(--translucent-light);
+    backdrop-filter: blur(5px);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode .nav-overlay #home-button,
+.dark-mode .nav-overlay #overlay-home-button {
+    background-color: var(--translucent-dark);
+}
+
+.nav-overlay #home-button:hover,
+.nav-overlay #overlay-home-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Ensure the home button doesn't interfere with the hamburger on small screens */
+@media (max-width: 768px) {
+    .nav-overlay #home-button,
+    .nav-overlay #overlay-home-button {
+        max-width: calc(100% - 60px); /* Adjust based on hamburger button width */
+    }
 }
 
 .nav-overlay a {
@@ -632,7 +667,8 @@ body:not(.index-page) #home-button {
 }
 
 .nav-overlay #mobile-theme-toggle {
-    margin-top: auto; /* Push to the bottom */
+    margin-top: auto;
+    align-self: center; /* Center the toggle button */
     display: flex;
     align-items: center;
     justify-content: center;
