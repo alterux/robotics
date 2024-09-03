@@ -754,3 +754,8 @@ body:not(.index-page) #home-button {
         display: flex;
     }
 }
+
+.hamburger:active, .close-button:active {
+    outline: none; /* Remove outline */
+    box-shadow: none; /* Remove any box-shadow */
+}

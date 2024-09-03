@@ -1,261 +1,197 @@
-const backgroundElement = document.querySelector('.background-image');
-const images = [
-    'media/assembly1.webp',
-    'media/assembly2.webp',
-    'media/seven.webp',
-];
-let currentIndex = 0;
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("DOM fully loaded and parsed");
 
-function changeBackground() {
+  // Background image rotation setup
+  const backgroundElement = document.querySelector(".background-image");
+  const images = [
+    "media/assembly1.webp",
+    "media/assembly2.webp",
+    "media/seven.webp",
+  ];
+  let currentIndex = 0;
+
+  function changeBackground() {
     backgroundElement.style.opacity = 0;
-    
     setTimeout(() => {
-        backgroundElement.style.backgroundImage = `url(${images[currentIndex]})`;
-        backgroundElement.style.opacity = 0.5;
-        
-        currentIndex = (currentIndex + 1) % images.length;
-        
-        setTimeout(() => {
-            backgroundElement.style.opacity = 0;
-            
-            setTimeout(changeBackground, 1000);
-        }, 5000);
+      backgroundElement.style.backgroundImage = `url(${images[currentIndex]})`;
+      backgroundElement.style.opacity = 0.5;
+      currentIndex = (currentIndex + 1) % images.length;
+      setTimeout(changeBackground, 5000);
     }, 1000);
-}
+  }
 
-// Start the animation
-changeBackground();
+  changeBackground(); // Start the background animation
 
-// Theme toggle functionality
-function updateThemeToggleText() {
-    const isDarkMode = document.body.classList.contains('dark-mode');
-    const toggleText = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
-    const toggleIcon = isDarkMode ? '☀️' : '🌙';
-    
-    const themeToggles = document.querySelectorAll('.theme-toggle');
-    themeToggles.forEach(toggle => {
-        toggle.innerHTML = `${toggleIcon} <span>${toggleText}</span>`;
+  // Load header content
+  fetch("header.html")
+    .then((response) =>
+      response.ok
+        ? response.text()
+        : Promise.reject(`HTTP error! status: ${response.status}`)
+    )
+    .then((data) => {
+      document.getElementById("header-placeholder").innerHTML = data;
+      setupNavigation();
+      highlightCurrentPage();
+    })
+    .catch((error) => console.error("Error loading header:", error));
+
+  // Load footer content and set up theme toggle
+  fetch("footer.html")
+    .then((response) => response.text())
+    .then((data) => {
+      const footer = document.querySelector("footer");
+      if (footer) {
+        footer.innerHTML = data;
+        document.querySelectorAll(".theme-toggle").forEach((toggle) => {
+          toggle.addEventListener("click", toggleTheme);
+        });
+        updateThemeToggleText();
+      }
+    })
+    .catch((error) => console.error("Error loading footer:", error));
+
+  // Theme management
+  function updateThemeToggleText() {
+    const isDarkMode = document.body.classList.contains("dark-mode");
+    const toggleText = isDarkMode
+      ? "Switch to Light Mode"
+      : "Switch to Dark Mode";
+    const toggleIcon = isDarkMode ? "☀️" : "🌙";
+    document.querySelectorAll(".theme-toggle").forEach((toggle) => {
+      toggle.innerHTML = `${toggleIcon} <span>${toggleText}</span>`;
     });
-}
+  }
 
-function toggleTheme() {
-    document.body.classList.toggle('dark-mode');
-    const theme = document.body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
-    localStorage.setItem('theme', theme);
+  function toggleTheme() {
+    document.body.classList.toggle("dark-mode");
+    const theme = document.body.classList.contains("dark-mode")
+      ? "dark-mode"
+      : "light-mode";
+    localStorage.setItem("theme", theme);
     updateThemeToggleText();
-}
+  }
 
-document.addEventListener("DOMContentLoaded", function() {
-    console.log('DOM fully loaded and parsed');
-    
-    // Background image rotation
-    const backgroundElement = document.querySelector('.background-image');
-    const images = [
-        'media/assembly1.webp',
-        'media/assembly2.webp',
-        'media/seven.webp',
-    ];
-    let currentIndex = 0;
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) document.body.classList.add(savedTheme);
+  updateThemeToggleText();
 
-    function changeBackground() {
-        backgroundElement.style.opacity = 0;
-        
-        setTimeout(() => {
-            backgroundElement.style.backgroundImage = `url(${images[currentIndex]})`;
-            backgroundElement.style.opacity = 0.5;
-            
-            currentIndex = (currentIndex + 1) % images.length;
-            
-            setTimeout(() => {
-                backgroundElement.style.opacity = 0;
-                
-                setTimeout(changeBackground, 1000);
-            }, 5000);
-        }, 1000);
-    }
+  // Page specific setup
+  if (
+    window.location.pathname.endsWith("index.html") ||
+    window.location.pathname.endsWith("/")
+  ) {
+    document.body.classList.add("index-page");
+  }
 
-    // Start the background animation
-    changeBackground();
-
-    // Load header content
-    fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-            setupNavigation();
-            highlightCurrentPage(); // Add this line to highlight the current page after loading the header
-        })
-        .catch(error => console.error('Error loading header:', error));
-
-    // Load footer content
-    fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-            const footer = document.querySelector('footer');
-            if (footer) {
-                footer.innerHTML = data;
-                const themeToggles = document.querySelectorAll('.theme-toggle');
-                themeToggles.forEach(toggle => {
-                    toggle.addEventListener('click', toggleTheme);
-                });
-                updateThemeToggleText();
-            }
-        })
-        .catch(error => console.error('Error loading footer:', error));
-
-    // Initial theme setup
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        document.body.classList.add(savedTheme);
-    }
-    updateThemeToggleText();
-
-    // Add index-page class to body if on index page
-    if (window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/')) {
-        document.body.classList.add('index-page');
-    }
-});
-
-function setupNavigation() {
-    const headerContainer = document.querySelector('header .container');
+  // Setup navigation functionality
+  function setupNavigation() {
+    const headerContainer = document.querySelector("header .container");
     if (!headerContainer) {
-        console.error('Header container not found');
-        return;
+      console.error("Header container not found");
+      return;
     }
 
-    // Create hamburger button
-    const hamburger = document.createElement('button');
-    hamburger.classList.add('hamburger');
-    hamburger.innerHTML = '<div></div><div></div><div></div>';
+    // Create and append hamburger button
+    const hamburger = document.createElement("button");
+    hamburger.classList.add("hamburger");
+    hamburger.innerHTML = "<div></div><div></div><div></div>";
     document.body.appendChild(hamburger);
 
-    // Create nav overlay
-    const navOverlay = document.createElement('div');
-    navOverlay.classList.add('nav-overlay');
+    // Create nav overlay and add cloned links and mobile theme toggle
+    const navOverlay = document.createElement("div");
+    navOverlay.classList.add("nav-overlay");
     document.body.appendChild(navOverlay);
 
-    // Clone nav links and add to overlay
-    const navLinks = headerContainer.querySelector('.nav-links');
-    if (navLinks) {
-        const clonedNavLinks = navLinks.cloneNode(true);
-        navOverlay.appendChild(clonedNavLinks);
-    }
+    const navLinks = headerContainer.querySelector(".nav-links");
+    if (navLinks) navOverlay.appendChild(navLinks.cloneNode(true));
 
-    // Add mobile theme toggle to overlay
-    const mobileThemeToggle = document.createElement('button');
-    mobileThemeToggle.id = 'mobile-theme-toggle';
-    mobileThemeToggle.classList.add('theme-toggle');
-    mobileThemeToggle.innerHTML = '🌙 <span>Switch to Dark Mode</span>';
-    mobileThemeToggle.addEventListener('click', toggleTheme);
+    const mobileThemeToggle = document.createElement("button");
+    mobileThemeToggle.id = "mobile-theme-toggle";
+    mobileThemeToggle.classList.add("theme-toggle");
+    mobileThemeToggle.innerHTML = "🌙 <span>Switch to Dark Mode</span>";
+    mobileThemeToggle.addEventListener("click", toggleTheme);
     navOverlay.appendChild(mobileThemeToggle);
 
-    const isIndexPage = document.body.classList.contains('index-page');
-
-    function updateHomeButtonVisibility() {
-        const homeButton = document.getElementById('home-button');
-        const navLinks = document.querySelector('.nav-links');
-        const isIndexPage = document.body.classList.contains('index-page');
-        const scrollPosition = window.scrollY;
-
-        if (!homeButton || !navLinks) return;
-
-        if (isIndexPage) {
-            if (scrollPosition > 100) {
-                homeButton.classList.remove('hidden');
-                navLinks.style.transform = 'translateX(0)';
-            } else {
-                homeButton.classList.add('hidden');
-                navLinks.style.transform = `translateX(-${homeButton.offsetWidth}px)`;
-            }
-        } else {
-            homeButton.classList.remove('hidden');
-            navLinks.style.transform = 'translateX(0)';
-        }
-    }
-
+    // Hamburger menu toggle functionality
     function toggleMenu() {
-        hamburger.classList.toggle('open');
-        navOverlay.classList.toggle('open');
-        
-        if (navOverlay.classList.contains('open')) {
-            navOverlay.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
-            setTimeout(() => {
-                navOverlay.style.opacity = '1';
-                document.getElementById('home-button').classList.remove('hidden'); // Ensure home button is visible
-            }, 10);
-        } else {
-            navOverlay.style.opacity = '0';
-            document.body.style.overflow = ''; // Restore scrolling when menu is closed
-            document.getElementById('home-button').classList.add('hidden'); // Hide home button immediately
-            setTimeout(() => {
-                navOverlay.style.display = 'none';
-                updateHomeButtonVisibility(); // Update home button visibility after closing the menu
-            }, 300);
-        }
-
-        updateThemeToggleText(); // Update theme toggle text when menu is opened/closed
+    const menuOpen = navOverlay.classList.toggle("open");
+      if (!menuOpen &&document.body.classList.contains("index-page")) {
+        homeButton.classList.toggle("hidden", window.scrollY <= 100);
+      } else {
+        homeButton.classList.remove("hidden");
+      }
+      hamburger.classList.toggle("open", menuOpen);
+      document.body.style.overflow = menuOpen ? "hidden" : ""; // Prevent or restore scrolling
+      navOverlay.style.display = menuOpen ? "flex" : "none";
+      navOverlay.style.opacity = menuOpen ? "1" : "0";
+      updateThemeToggleText();
     }
 
-    // Add event listeners
-    hamburger.addEventListener('click', toggleMenu);
-    navOverlay.addEventListener('click', (event) => {
-        if (event.target === navOverlay) {
-            toggleMenu();
-        }
+    hamburger.addEventListener("click", toggleMenu);
+    navOverlay.addEventListener("click", (event) => {
+      if (event.target === navOverlay) toggleMenu();
     });
 
+    // Update hamburger visibility based on window width
     function updateHamburgerVisibility() {
-        if (window.innerWidth <= 768) {
-            hamburger.style.display = 'flex';
-        } else {
-            hamburger.style.display = 'none';
-            navOverlay.classList.remove('open');
-            hamburger.classList.remove('open');
-        }
+      if (window.innerWidth > 768) {
+        hamburger.style.display = "none"; // Hide hamburger on desktop
+      } else {
+        hamburger.style.display = "flex"; // Show hamburger on mobile
+      }
     }
 
-    // Initialize visibility and add listeners
-    updateHomeButtonVisibility();
-    updateHamburgerVisibility();
-    window.addEventListener('scroll', updateHomeButtonVisibility);
-    window.addEventListener('resize', updateHamburgerVisibility);
+    window.addEventListener("resize", updateHamburgerVisibility);
+    updateHamburgerVisibility(); // Initial check
 
-    // Modify home button click behavior on index page
-    const homeButton = document.getElementById('home-button');
-    if (isIndexPage && homeButton) {
-        homeButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+    // Home button behavior
+    const homeButton = document.getElementById("home-button");
+    if (homeButton && document.body.classList.contains("index-page")) {
+      homeButton.classList.add("hidden"); // Hide initially
     }
-}
-
-// Call setupNavigation after the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', setupNavigation);
-
-// Add this function outside of any other function
-function highlightCurrentPage() {
-    const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav-links a, .nav-overlay a');
-    navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPath.split('/').pop()) {
-            link.classList.add('active');
+    if (homeButton) {
+      homeButton.addEventListener("click", function (e) {
+        if (document.body.classList.contains("index-page")) {
+          // On index page: close menu (if open) and scroll to top
+          e.preventDefault();
+          if (navOverlay.classList.contains("open")) {
+            toggleMenu(); // Close menu if open
+          }
+          window.scrollTo({ top: 0, behavior: "smooth" });
         } else {
-            link.classList.remove('active');
+          // On other pages: redirect to index page
+          window.location.href = "index.html";
         }
-    });
-}
+      });
+    }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.hamburger');
-    const navOverlay = document.querySelector('.nav-overlay');
-
-    hamburger.addEventListener('click', function() {
-        navOverlay.classList.toggle('open');
-        hamburger.classList.toggle('open');
+    // Update home button visibility on scroll
+    window.addEventListener("scroll", () => {
+      const scrollPosition = window.scrollY;
+      if (document.body.classList.contains("index-page")) {
+        homeButton.classList.toggle("hidden", scrollPosition <= 100);
+        // Slide menu items based on scroll position
+        const navLinks = document.querySelector(".nav-links");
+        navLinks.style.transform =
+          scrollPosition > 100
+            ? "translateX(0)"
+            : `translateX(-${homeButton.offsetWidth}px)`;
+      } else {
+        homeButton.classList.remove("hidden");
+      }
     });
+  }
+
+  function highlightCurrentPage() {
+    const currentPath = window.location.pathname.split("/").pop();
+    document
+      .querySelectorAll(".nav-links a, .nav-overlay a")
+      .forEach((link) => {
+        link.classList.toggle(
+          "active",
+          link.getAttribute("href") === currentPath
+        );
+      });
+  }
 });
