@@ -181,6 +181,16 @@ document.addEventListener("DOMContentLoaded", function () {
         homeButton.classList.remove("hidden");
       }
     });
+
+    // Initial adjustment of nav-links position based on scroll position
+    const initialScrollPosition = window.scrollY;
+    if (document.body.classList.contains("index-page")) {
+      const navLinks = document.querySelector(".nav-links");
+      navLinks.style.transform =
+        initialScrollPosition > 100
+          ? "translateX(0)"
+          : `translateX(-${homeButton.offsetWidth}px)`;
+    }
   }
 
   function highlightCurrentPage() {
