@@ -141,14 +141,6 @@ function setupNavigation() {
         navOverlay.appendChild(clonedNavLinks);
     }
 
-    // Clone home button and add to overlay
-    const homeButton = document.getElementById('home-button');
-    if (homeButton) {
-        const clonedHomeButton = homeButton.cloneNode(true);
-        clonedHomeButton.id = 'overlay-home-button';
-        navOverlay.insertBefore(clonedHomeButton, navOverlay.firstChild);
-    }
-
     // Add mobile theme toggle to overlay
     const mobileThemeToggle = document.createElement('button');
     mobileThemeToggle.id = 'mobile-theme-toggle';
@@ -181,17 +173,6 @@ function setupNavigation() {
         }
     }
 
-    // Modify home button click behavior on index page
-    if (document.body.classList.contains('index-page') && homeButton) {
-        homeButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
-
     function toggleMenu() {
         hamburger.classList.toggle('open');
         navOverlay.classList.toggle('open');
@@ -201,16 +182,18 @@ function setupNavigation() {
             document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
             setTimeout(() => {
                 navOverlay.style.opacity = '1';
+                document.getElementById('home-button').classList.remove('hidden'); // Ensure home button is visible
             }, 10);
         } else {
             navOverlay.style.opacity = '0';
             document.body.style.overflow = ''; // Restore scrolling when menu is closed
+            document.getElementById('home-button').classList.add('hidden'); // Hide home button immediately
             setTimeout(() => {
                 navOverlay.style.display = 'none';
+                updateHomeButtonVisibility(); // Update home button visibility after closing the menu
             }, 300);
         }
 
-        updateHomeButtonVisibility();
         updateThemeToggleText(); // Update theme toggle text when menu is opened/closed
     }
 
@@ -237,6 +220,18 @@ function setupNavigation() {
     updateHamburgerVisibility();
     window.addEventListener('scroll', updateHomeButtonVisibility);
     window.addEventListener('resize', updateHamburgerVisibility);
+
+    // Modify home button click behavior on index page
+    const homeButton = document.getElementById('home-button');
+    if (isIndexPage && homeButton) {
+        homeButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 }
 
 // Call setupNavigation after the DOM is fully loaded

@@ -107,8 +107,8 @@ header .container {
 
 .nav-links a:hover, .nav-overlay a:hover,
 .nav-links a.active, .nav-overlay a.active {
-    color: white;
-    background-color: var(--primary-color);
+    color: white !important; /* Ensure text color changes */
+    background-color: var(--primary-color) !important; /* Ensure background color changes */
     border-bottom-color: white;
 }
 
@@ -174,7 +174,7 @@ header .container {
 
 .btn:hover {
     transform: translateY(-3px);
-    background-color: #b01030; /* Darker crimson red */
+    background-color: #b01030 !important; /* Ensure background color changes */
 }
 
 #products {
@@ -365,8 +365,8 @@ footer {
 }
 
 #desktop-theme-toggle:hover {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--primary-color) !important; /* Ensure background color changes */
+    color: white !important; /* Ensure text color changes */
 }
 
 #desktop-theme-toggle span {
@@ -407,8 +407,8 @@ footer {
 }
 
 .nav-button:hover {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--primary-color) !important; /* Ensure background color changes */
+    color: white !important; /* Ensure text color changes */
     transform: translateY(-3px);
 }
 
@@ -417,21 +417,34 @@ footer {
     position: relative;
     z-index: 1003;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Match the width of the hamburger button */
+    height: 40px; /* Match the height of the hamburger button */
     transition: opacity 0.3s ease, transform 0.3s ease, width 0.3s ease;
     opacity: 1;
     margin-right: 10px; /* Add a small margin to separate from other buttons */
     transform: translateX(0);
+    background-color: var(--translucent-light); /* Match the background color of the hamburger button */
+    backdrop-filter: blur(5px); /* Match the backdrop filter of the hamburger button */
+    border: none; /* Ensure no border */
+    border-radius: 5px; /* Match the border radius of the hamburger button */
+    cursor: pointer; /* Add cursor pointer for better UX */
+}
+
+.dark-mode #home-button {
+    background-color: var(--translucent-dark); /* Match the dark mode background color of the hamburger button */
 }
 
 #home-button.hidden {
-    transform: translateX(-100%); /* Slide out of view equal to its own width */
     opacity: 0;
     margin-right: 0px; /* Add a small margin to separate from other buttons */
 }
 
 /* Adjust for non-index pages. */
 body:not(.index-page) #home-button {
-    width: auto;
+    width: 40px; /* Match the width of the hamburger button */
+    height: 40px; /* Match the height of the hamburger button */
     opacity: 1;
     margin-right: 10px; /* This should match the gap in nav-links */
 }
@@ -575,7 +588,7 @@ body:not(.index-page) #home-button {
 /* Maintain hover state during transition */
 .hamburger:hover, .close-button:hover, 
 .hamburger.open:hover, .close-button.open:hover {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color) !important; /* Ensure background color changes */
 }
 
 .nav-overlay {
@@ -633,8 +646,8 @@ body:not(.index-page) #home-button {
 
 .nav-overlay #home-button:hover,
 .nav-overlay #overlay-home-button:hover {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--primary-color) !important; /* Ensure background color changes */
+    color: white !important; /* Ensure text color changes */
 }
 
 /* Ensure the home button doesn't interfere with the hamburger on small screens */
@@ -662,8 +675,8 @@ body:not(.index-page) #home-button {
 }
 
 .nav-overlay a:hover {
-    color: var(--primary-color); /* Change color on hover */
-    background-color: var(--primary-color);
+    color: white !important; /* Ensure text color changes */
+    background-color: var(--primary-color) !important; /* Ensure background color changes */
 }
 
 .nav-overlay #mobile-theme-toggle {
@@ -686,8 +699,8 @@ body:not(.index-page) #home-button {
 }
 
 .nav-overlay #mobile-theme-toggle:hover {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--primary-color) !important; /* Ensure background color changes */
+    color: white !important; /* Ensure text color changes */
 }
 
 .nav-overlay #mobile-theme-toggle span {
@@ -734,11 +747,6 @@ body:not(.index-page) #home-button {
     .close-button {
         top: 10px;
         right: 10px;
-    }
-
-    /* Ensure the home button doesn't interfere with the hamburger on small screens */
-    #home-button {
-        max-width: calc(100% - 60px); /* Adjust based on hamburger button width */
     }
 
     /* Show the home button when the nav-overlay is open, even on the index page */
